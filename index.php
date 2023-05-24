@@ -17,6 +17,16 @@ if (isset($_GET['action'])) {
         $studentApi->outputStudents($studentModel->getStudents());
     }
 
+    if ($chosenAction == 'students-id') {
+        if (isset($_GET['id'])) {
+            $studentId = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+            $students = $studentModel->getStudentById($studentId);
+            
+            if ($students) {
+                $studentApi->outputStudents($students);
+            }}
+    }
+
     if ($chosenAction == 'class') {
         $classApi->outputClasses($classModel->getClasses());
     }

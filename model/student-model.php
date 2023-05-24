@@ -12,6 +12,13 @@ class StudentModel extends DB{
 
         return $statement->fetchAll();
     }
+
+    public function getStudentById($studentId) {
+        $statement = $this->pdo->prepare('SELECT * FROM students WHERE id = :students_id;');
+        $statement->execute(['students_id' => $studentId]);
+
+        return $statement->fetch();
+    }
     
 }
 
